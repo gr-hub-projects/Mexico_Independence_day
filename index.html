@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff5a1f" />
+  <meta name="description" content="NexusTours Mexico Trivia — descubre cuánto sabes de México y desbloquea un beneficio especial." />
+  <meta property="og:title" content="Think You Know Mexico? | NexusTours" />
+  <meta property="og:description" content="Take the challenge. Answer 10 questions and unlock a special NexusTours benefit." />
+  <title>Think You Know Mexico? | NexusTours</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+
+  <main class="app-shell" id="app">
+    <section class="card welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
+      <div class="brand-row">
+        <a class="brand" href="https://www.nexustours.com/" target="_blank" rel="noopener" aria-label="NexusTours">
+          <span class="brand-mark">NEXUS<span>TOURS</span></span>
+          <small>Live it. Love it.</small>
+        </a>
+
+        <div class="language-switch" role="group" aria-label="Language / Idioma">
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <div class="welcome-art" aria-hidden="true">
+        <span class="sun-dot dot-1"></span>
+        <span class="sun-dot dot-2"></span>
+        <img src="assets/maracas.png" alt="" class="welcome-maracas" />
+        <img src="assets/cactus.png" alt="" class="welcome-cactus" />
+      </div>
+
+      <div class="welcome-copy">
+        <p class="eyebrow" data-i18n="challenge">ONE-MINUTE TRIVIA EXPERIENCE</p>
+        <h1 id="welcomeTitle" data-i18n="welcomeTitle">¿QUÉ TANTO SABES DE <em>MÉXICO?</em></h1>
+        <p class="supporting" data-i18n="welcomeSupporting">SOLO LOS VERDADEROS EXPERTOS EN MÉXICO LO LOGRAN.</p>
+        <div class="pill-row" aria-label="Trivia features">
+          <span>10 <b data-i18n="questionsLabel">preguntas</b></span>
+          <span>1 <b data-i18n="minuteLabel">minuto</b></span>
+          <span>15% <b data-i18n="maxOffLabel">máx. off</b></span>
+        </div>
+        <button class="primary-btn" id="startBtn" type="button">
+          <span data-i18n="start">COMENZAR TRIVIA</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="card quiz-screen hidden" id="quizScreen" aria-live="polite">
+      <header class="quiz-header">
+        <div class="mini-brand" aria-label="NexusTours">NEXUS<span>TOURS</span></div>
+        <button class="close-btn" id="restartBtn" type="button" aria-label="Restart trivia" title="Restart">×</button>
+      </header>
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressText">Pregunta 1 de 10</span>
+          <span id="scoreText" aria-label="Current score">0 pts</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1" aria-label="Trivia progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="question-stage" id="questionStage">
+        <div class="visual-frame" id="visualFrame">
+          <div class="visual-halo"></div>
+          <img id="questionImage" src="assets/independencia.png" alt="" />
+          <div class="fallback-emoji hidden" id="fallbackEmoji" aria-hidden="true">🇲🇽</div>
+        </div>
+
+        <div class="question-copy">
+          <p class="question-number" id="questionNumber">01</p>
+          <h2 id="questionText"></h2>
+        </div>
+
+        <div class="answers" id="answers" role="group" aria-label="Answer options"></div>
+
+        <div class="feedback-panel hidden" id="feedbackPanel" tabindex="-1">
+          <div class="feedback-icon" id="feedbackIcon" aria-hidden="true"></div>
+          <div>
+            <h3 id="feedbackTitle"></h3>
+            <p id="feedbackMessage"></p>
+          </div>
+        </div>
+
+        <button class="primary-btn next-btn hidden" id="nextBtn" type="button">
+          <span data-i18n="next">SIGUIENTE PREGUNTA</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="card result-screen hidden" id="resultScreen" aria-live="polite">
+      <div class="result-confetti" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="brand-row result-brand-row">
+        <div class="brand">
+          <span class="brand-mark">NEXUS<span>TOURS</span></span>
+          <small>Live it. Love it.</small>
+        </div>
+        <div class="language-switch" role="group" aria-label="Language / Idioma">
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <div class="result-illustration" aria-hidden="true">
+        <div class="result-badge">★</div>
+        <img src="assets/mariachi.png" alt="" />
+      </div>
+
+      <p class="eyebrow" id="resultEyebrow">MEXICO EXPERT</p>
+      <h2 id="resultTitle">¡FELICIDADES!</h2>
+      <p class="result-copy" id="resultCopy">Has desbloqueado un beneficio especial de NexusTours.</p>
+
+      <div class="score-card">
+        <div>
+          <span data-i18n="yourScore">TU PUNTAJE</span>
+          <strong id="finalScore">0/10</strong>
+        </div>
+        <div class="discount-block" id="discountBlock">
+          <span data-i18n="youUnlocked">DESBLOQUEASTE</span>
+          <strong id="discountValue">15% OFF</strong>
+        </div>
+      </div>
+
+      <p class="benefit-note" id="benefitNote"></p>
+
+      <button class="primary-btn" id="bookBtn" type="button">
+        <span data-i18n="bookNow">RESERVAR AHORA</span>
+        <span class="btn-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="secondary-btn hidden" id="tryAgainBtn" type="button" data-i18n="tryAgain">INTENTAR DE NUEVO</button>
+    </section>
+  </main>
+
+  <noscript>Esta trivia necesita JavaScript para funcionar. / This trivia requires JavaScript.</noscript>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
